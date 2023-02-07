@@ -25,11 +25,12 @@ function ProductPage({ product }) {
   return (
     <>
       <Head>
-        <title>{product.attributes.title}</title>
+        <title>{product.title}</title>
       </Head>
-      <main>
-        <Title>{product.attributes.title}</Title>
-        <p>{product.attributes.description}</p>
+      <main className="p-2">
+        <img src={product.pictureUrl} alt="" />
+        <Title>{product.title}</Title>
+        <p>{product.description}</p>
       </main>
     </>
   );

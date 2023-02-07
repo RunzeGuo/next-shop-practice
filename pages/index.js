@@ -2,11 +2,10 @@ import Title from "@/components/Title";
 import Link from "next/link";
 import { getProducts } from "@/lib/products";
 import Head from "next/head";
+import ProductCard from "@/components/ProductCard";
 
 export async function getStaticProps() {
   console.log("[HomePage]: getStaticProps()");
-  // const response = await fetch("http://localhost:1337/api/products");
-  // const { data } = await response.json();
   const products = await getProducts();
   return { props: { products }, revalidate: 10 };
 }
@@ -20,12 +19,10 @@ function HomePage({ products }) {
       </Head>
       <main className="p-2">
         <Title>Next Shop</Title>
-        <ul>
+        <ul className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {products.map((product) => (
             <li key={product.id}>
-              <Link href={`/products/${product.id}`}>
-                {product.attributes.title}
-              </Link>
+              <ProductCard product={product} />
             </li>
           ))}
         </ul>
